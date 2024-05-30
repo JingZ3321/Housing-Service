@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Panel</title>
+</head>
+
+<body>
+    <!-- header -->
+    <span id="example"></span>
+    <button id="tryTestDB">Test Connection</button>
+    <button onclick="window.location.href='appTrial.html'">combined drafting page</button><br>
+    <div id="displayGET"></div>
+    <br>
+    <b>Manage User Account</b><br>
+    <button onclick="window.location.href='registration.html'">Registration Panel</button>
+    <button onclick="window.location.href='login.html'">Login Panel</button>
+    <button onclick="window.location.href='upgradeAccount.html'">Manage Memberships</button>
+    <button id="signout">sign out</button><br>
+    <br>
+    <b>Manage Service Requests</b><br>
+    <button onclick="window.location.href='createTask.html'">Create Service Requests</button>
+    <button onclick="window.location.href='taskDisplay.html'">Service Display Panel</button>
+    <button onclick="window.location.href='taskSelectPanel.html'">Task Selection Panel</button>
+    <button onclick="window.location.href='makeOffer.html'">Make Offer Panel</button>
+    <button onclick="window.location.href='offerListA.html'">View Offers</button><br>
+    <button onclick="window.location.href='servicePage.html'">Service Page Basic Integration</button><br>
+    <br>
+    <b>Manage Payment Transactions</b><br>
+    <button onclick="window.location.href='taskPayment.html'">Payment from Customer</button>
+    <button onclick="window.location.href='taskPaymentPro.html'">Payment to Professional</button><br>
+    <br>
+    <b>other components</b><br>
+    <button onclick="window.location.href=''">Review and Rating(not ready)</button>
+    <button onclick="window.location.href=''">Report Generation(not ready)</button><br>
+    <br>
+    <span><u>(for reference) Session data in the localStorage:</u></span><br>
+    <span id="displayStoredSession"></span><br>
+    <!-- header -->
+
+    <br><br>
+    <span><b>account login</b></span>
+    <br><br>
+
+    <form id="loginForm" action="/account/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="pw">Password:</label>
+        <input type="password" id="pw" name="pw" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <span id="loginStatus"></span>
+
+    <br><br>
+
+    <span><u>here are the two type of data after login success:</u></span><br>
+    <span id="dataFromRes"></span><br>
+    <span id="dataFromLocalSession"></span><br>
+
+    <br><br>
+    <button id="signout2">sign out</button>
+    <br>
+    <br>
+    <button id="goUpgradePage">to go membership/ profession subscribe page</button>
+    <br>
+    <br>
+    <button id="goCreateTaskPage">to go Create Task page</button>
+
+
+    <script>
+        /////////// display local store session
+        // Function to update the displayed session information
+        function updateDisplayedSession() {
+            const userName = localStorage.getItem('userName');
+            const userID = localStorage.getItem('userID');
+            const member = localStorage.getItem('member');
+            const professional = localStorage.getItem('pro');
+            const displayElement = document.getElementById('displayStoredSession');
+            displayElement.textContent = `User Name: ${userName} | UserID: ${userID} | member: ${member} | professioanl: ${professional}`;
+        }
+        // Initial display of stored session information
+        updateDisplayedSession();
+
+        // sign out logic
+        const signOutButton = document.getElementById('signout');
+        signOutButton.addEventListener('click', () => {
+            // Clear the stored session data in localStorage
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userID');
+            localStorage.removeItem('member');
+            localStorage.removeItem('pro');
+
+            // Redirect the user to the login page or any other desired page
+            window.location.href = '/login.html';
+        });
+        // only for this page:
+        const signOutButton2 = document.getElementById('signout2');
+        signOutButton2.addEventListener('click', () => {
+            // Clear the stored session data in localStorage
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userID');
+            localStorage.removeItem('member');
+            localStorage.removeItem('pro');
+
+            // Redirect the user to the login page or any other desired page
+            window.location.href = '/login.html';
+        });
+
+        /// Redirecting ///////
+        // redirect to membership/ profession subscription page
+        const goUpgradePageButton = document.getElementById('goUpgradePage');
+        goUpgradePageButton.addEventListener('click', () => {
+            // Redirect the user to the upgradeAccount.html page
+            window.location.href = '/upgradeAccount.html';
+        });
+        // redirect to Create Task page
+        const goCreateTaskPageButton = document.getElementById('goCreateTaskPage');
+        goCreateTaskPageButton.addEventListener('click', () => {
+            // Redirect the user to the upgradeAccount.html page
+            window.location.href = '/createTask.html';
+        });
+
+        // XMLHttpRequest
+        const loginForm = document.getElementById('loginForm');
+        const loginStatus = document.getElementById('loginStatus');
+        let response;
+
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const email = loginForm.email.value;
+            const pw = loginForm.pw.value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/account/login');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        // Update the login status message
+                        loginStatus.textContent = data.message;
+
+                        const resUserName = document.getElementById('dataFromRes');
+                        resUserName.textContent = "(message from res, server session) User Name: " + data.userName + " #ID: " + data.userID;
+
+                        //set the default view for service page
+                        localStorage.setItem("tasksSelection", "latest");
+
+                        // Make a GET request to retrieve session data
+                        const xhr2 = new XMLHttpRequest();
+                        xhr2.open('GET', '/account/session');
+                        xhr2.onreadystatechange = function () {
+                            if (xhr2.readyState === XMLHttpRequest.DONE) {
+                                if (xhr2.status === 200) {
+                                    const sessionData = JSON.parse(xhr2.responseText);
+                                    // const userName = sessionData.userName;
+                                    // const userID = sessionData.userID;
+                                    console.log(sessionData);
+                                    // Store session data in localStorage
+                                    localStorage.setItem('userName', sessionData.userName);
+                                    localStorage.setItem('userID', sessionData.userID);
+                                    localStorage.setItem('email', sessionData.email);
+                                    localStorage.setItem('member', sessionData.member);
+                                    localStorage.setItem('pro', sessionData.pro);
+                                    updateDisplayedSession();
+
+                                    // Use the session data as needed
+                                    const storedUserName = localStorage.getItem('userName');
+                                    const storedUserID = localStorage.getItem('userID');
+                                    const storedEmail = localStorage.getItem('email');
+                                    const storedMember = localStorage.getItem('member');
+                                    const storedPro = localStorage.getItem('pro');
+                                    console.log("name: " + storedUserName);
+                                    console.log("userID: " + storedUserID);
+                                    console.log("email: " + storedEmail);
+                                    console.log("membership: " + storedMember);
+                                    console.log("profession: " + storedPro);
+
+                                    // Update the client UI with the session data
+                                    document.getElementById('dataFromLocalSession').textContent = "(message from local session) User Name: " + storedUserName + " #ID: " + storedUserID;
+                                } else {
+                                    // Handle errors...
+                                }
+                            }
+                        };
+                        xhr2.send();
+                    } else {
+                        // Handle errors...
+                        loginStatus.textContent = 'Error submitting login form';
+                    }
+                }
+            };
+            const data = JSON.stringify({ email, pw });
+            xhr.send(data);
+        });
+
+        // const button_addUser = document.getElementById('addUser');
+        // button_addUser.addEventListener('click', async () => {
+        //     console.log("clicked");
+        //     const response = await fetch('/add-user', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             sname: 'Saya',
+        //             lname: 'Mi',
+        //             email: 'Saya@example.com',
+        //             phoneNum: '1234567890',
+        //             pw: '12345',
+        //             membership: 0,
+        //             professional: 0
+        //         })
+        //     });
+        //     const data = await response.json();
+        //     console.log(data);
+        // });
+
+
+        // to test the connectivity to DB
+        const button_testDB = document.getElementById('tryTestDB');
+        button_testDB.addEventListener('click', async () => {
+            // console.log("clicked");
+            const response = await fetch('/account/test-db');
+            const data = await response.json();
+            // console.log(data);
+
+            const jsonStr = JSON.stringify(data);
+            var displayGet = document.getElementById("displayGET");
+            displayGet.innerHTML = "<b>connection: OK</b> || Retrieved Sample Data: email = " + data[0].email;
+        });
+    </script>
+
+</body>
+
+</html>

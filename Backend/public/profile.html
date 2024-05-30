@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile page</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        .white-box1 {
+            width: 1000px;
+            height: 200px;
+            background-color: #FFFFFF;
+            border: 1px solid #F2F2F2; 
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .white-box2 {
+            width: 1000px;
+            height: 200px;
+            background-color: #FFFFFF;
+            border: 1px solid #F2F2F2; 
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .white-box3 {
+            width: 1000px;
+            height: 200px;
+            background-color: #FFFFFF;
+            border: 1px solid #F2F2F2; 
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .background-1 {
+            background-image: url(./background2.png);
+            background-repeat: no-repeat;
+            background-size: 80% 100%;
+            background-position: center center;
+        }
+
+        body {
+            background-image: url(./background1.jpg);
+            background-position: center;
+            background-attachment:fixed ;
+            background-size: 100% 100%;
+        }
+
+        .span1 {
+            display: block;
+            position: relative;
+            left: 20%;
+            color: #444444;
+            font-size: 24px;
+        }
+
+        .span2 {
+            display: block;
+            position: relative;
+            left: 20%;
+            color: #444444;
+            font-size: 24px;
+        }
+
+        .span3 {
+            display: block;
+            position: relative;
+            left: 20%;
+            color: #444444;
+            font-size: 24px;
+        }
+
+        .button1 {
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .button2 {
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .button3 {
+            display: block;
+            position: relative;
+            left: 20%;
+        }
+
+        .button4 {
+            border: 0;
+            background-color:transparent;
+            color: #999999;
+            left: 1500px;
+            font-size: 24px;
+        }
+
+        .button5 {
+            border: 0;
+            background-color:transparent;
+            color: #999999;
+            left: 1500px;
+            font-size: 24px;
+        }
+
+        .button6 {
+            border: 0;
+            background-color:#F99746;
+            color: #FFFFFF;
+            left: 1500px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding-left: 400px;">
+        <img src="./logo.png" alt="Sorry, something goes wrong!"  height="200" width="300">
+    </div>
+    <div style="padding-left: 1500px;">
+        <button class="button4" onclick="window.location.href='appTrial.html'">HOME</button>
+        <button class="button5" onclick="window.location.href='tasksList.html'">SERVICE</button>
+        <button class="button6" onclick="window.location.href='createTask.html'">Request Service</button>
+    </div>
+
+    <br /><br />
+
+    <div class="background-1">  
+
+        <span class="span1"><b>Profile</b></span>
+        <div class="white-box1" id="userInfo"></div>
+        <button class="button1" id="testOnly">Try to display information</button>
+
+        <br /><br />
+        <span class="span2"><b>Membership</b></span>
+        <div class="white-box2" id="userMem"></div>
+        <button class="button2" id="testMem">Test get Membership information</button>
+
+            
+        <br /><br />
+        <span class="span3"><b>Professional</b></span>
+        <div class="white-box3" id="userPro"></div>
+        <button class="button3" id="testPro">Test get Professional information</button>
+    </div>
+       
+    <script>
+
+        // to display the user's profile information
+        const button_getTest = document.getElementById('testOnly');
+        button_getTest.addEventListener('click', async () => {
+            const response = await fetch('/account/get-latest-user');
+            const data = await response.json();
+            console.log("clicked");
+            // console.log(data);
+            const jsonStr = JSON.stringify(data);
+            var displayGet = document.getElementById("userInfo");
+            displayGet.innerHTML = "Name: " + data[0].sname + " " + data[0].lname +
+            "<br> Email: "  + data[0].email + 
+            "<br> Phone: " + data[0].phoneNum + 
+            "<br> UserID: " + data[0].userID; 
+        });
+
+
+        // to display the user's membership information
+        const button_getMembership = document.getElementById('testMem');
+        button_getMembership.addEventListener('click', async () => {
+            const response = await fetch('/account/get-latest-user');
+            const data = await response.json();
+            console.log("clicked");
+            // console.log(data);
+            const jsonStr = JSON.stringify(data);
+            var displayGet = document.getElementById("userMem");
+            displayGet.innerHTML = "Fee:      " + data[0].membershipFee + 
+            "<br>Start Date:    " + data[0].membershipDate;
+
+        });
+
+
+        // to display the user's professional information
+        const button_getProfessional = document.getElementById('testPro');
+        button_getProfessional.addEventListener('click', async () => {
+            const response = await fetch('/account/get-latest-user');
+            const data = await response.json();
+            console.log("clicked");
+            // console.log(data);
+            const jsonStr = JSON.stringify(data);
+            var displayGet = document.getElementById("userPro");
+            displayGet.innerHTML = "Fee:      " + data[0].professionalFee + 
+            "<br>Start Date:    " + data[0].professionalDate;
+
+        });
+
+
+
+        
+    </script>
+</body>
+
+</html>

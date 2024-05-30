@@ -1,0 +1,108 @@
+.noOffer {
+    display: flex;
+    width: 600px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #F2f2f2;
+    border-radius: 8px;
+    align-items: center; /* Change align-items property to center */
+    justify-content: center; /* Add justify-content property with a value of center */
+}
+
+.diaplayBlock {
+    display: block;
+    width: 600px;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskFlow_title {
+    font-size: 24px;
+    text-align: center;
+    color: #444444;
+}
+
+.taskFlow_subTitle {
+    font-size: 16px;
+    text-align: center;
+    color: #444444;
+}
+
+.taskFlow_paragraph {
+    font-size: 16px;
+    text-align: center;
+    color: #808080;
+}
+
+.taskFlow_paragraphSubtle {
+    font-size: 16px;
+    text-align: center;
+    color: #999999;
+}
+
+.actionButton {
+    position:static;
+    width: 280px;
+    height: 40px;
+    left: 682px;
+    top: 669px;
+    background-color: #6cd6e4;
+    font-size: 16px;
+    color: white;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .actionButton:hover {
+    background-color: #79ddea;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #8d8d8d3f;
+  }
+
+  .actionButtonCus {
+    position:static;
+    width: 280px;
+    height: 40px;
+    left: 682px;
+    top: 669px;
+    background-color: #F99746;
+    font-size: 16px;
+    color: white;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .actionButtonCus:hover {
+    background-color: #f9a45e;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #8d8d8d3f;
+  }
+
+  .pendingButton {
+    position:static;
+    width: 280px;
+    height: 40px;
+    left: 682px;
+    top: 669px;
+    background-color: #d1d1d1;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .vertSpace {
+    width: 50px;
+    height: 50px;
+    background-color: #6cd6e4;
+  }
+
+  

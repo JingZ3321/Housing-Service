@@ -1,0 +1,259 @@
+.form-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+}
+
+.form-field {
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.form-label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: border-color 0.2s ease-in-out;
+    color: #333;
+}
+
+.date-field .form-input {
+    width: 150px;
+    /* Adjust the width to your desired size */
+}
+
+.flex-container {
+    display: flex;
+    gap: 20px; /* Adjust the gap size as needed */
+  }
+  
+.form-input:focus {
+    outline: none;
+    border-color: #F99746;
+    box-shadow: 0px 0px 8px #F99746;
+}
+
+.form-checkbox {
+    margin-right: 8px;
+}
+
+.date-fields-container {
+    display: flex;
+    gap: 10px;
+}
+
+.date-field {
+    flex: 1;
+}
+
+.form-submit-btn {
+    display: block;
+    width: 30%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #F99746;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.form-submit-btn:hover {
+    background-color: #F99746;
+}
+
+@media screen and (max-width: 480px) {
+
+    .form-input,
+    .form-submit-btn {
+        font-size: 14px;
+    }
+}
+
+.confirm-task-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.orders-container {
+    display: flex;
+}
+
+.order-summary-container {
+    width: 300px;
+    height: 600px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.summary-container {
+    width: 1000px;
+    height: 600px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.summary-container h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .summary-container p {
+    margin-bottom: 5px;
+    font-size: 16px; 
+  }
+
+.confirm-task-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.confirm-task-subtitle {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.confirm-task-details {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    background-color: #fff;
+}
+
+.confirm-task-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.confirm-task-label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+
+.confirm-task-value {
+    display: block;
+    font-size: 16px;
+}
+
+.confirm-task-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-back-btn,
+.form-publish-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.form-back-btn {
+    background-color: #ddd;
+    border: none;
+    color: #333;
+}
+
+.form-publish-btn {
+    background-color: #F99746;
+    border: none;
+    color: #fff;
+}
+
+.form-back-btn:hover {
+    background-color: #ccc;
+}
+
+.form-publish-btn:hover {
+    background-color: #F87E2C;
+}
+
+.order-summary.selected {
+    border: 5px solid #F99746;
+}
+
+.order-summary p {
+    margin-bottom: 5px;
+    font-size: 14px; 
+  }
+
+.order-summary {
+    background-color: #fff;
+    border: 3px solid rgba(192, 202, 224, 0.647);
+    margin-top: 2%;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease-in-out;
+}
+
+.order-summary:hover {
+    border-color: #F99746;
+}
+
+@media screen and (max-width: 480px) {
+
+    .confirm-task-label,
+    .confirm-task-value,
+    .form-back-btn,
+    .form-publish-btn {
+        font-size: 40px;
+    }
+}
